@@ -6,6 +6,16 @@
   </head>
 
   <body>
+    <h1>Todi List</h1>
+    <div>
+      <button id="displayTodos">Display Todos</button>
+      <button id="toggleAll">Toggle all</button>
+      <ul></ul>
+    </div>
+
+
+
+
     <script>
      
      var todoList = {
@@ -40,31 +50,43 @@
           this.displayTodos();
         },
         toggleCompleted: function(position) {
-          var todo = this.todos[position];
-          todo.completed = !todo.completed;
-          this.displayTodos();
+          var todo = this.todos[position].completed;
+          todo.completed = !todo.completed
+          this.displayTodos
         },
         toggleAll: function() {
           var totalTodos = this.todos.length;
           var completedTodos = 0;
-
           for (i=0; i<totalTodos; i++) {
             if (this.todos[i].completed === true) {
-            completedTodos++;
-            }
-          } 
-          if (completedTodos === totalTodos) {
-          for (i = 0; i < totalTodos; i++) {
-            this.todos[i].completed = false;
-            }
-          } else {
-            for (i = 0; i < totalTodos; i++) {
-            this.todos[i].completed = true;
+              completedTodos++;
             }
           }
-            this.displayTodos()
-          } 
+          if (completedTodos === totalTodos) {
+            for (i=0; i<totalTodos; i++) {
+              this.todos[i].completed = false;
+            }
+          } else {
+            for (i=0; i<totalTodos; i++) {
+              this.todos[i].completed = true;
+            }
+          }
+          this.displayTodos()
+        }
       };
+
+      var displayButton = document.getElementById('displayTodos')
+      displayButton.addEventListener('click', function(){
+       
+        todoList.displayTodos();
+      
+      })
+
+      var toggleAllButton = document.getElementById('toggleAll')
+      toggleAllButton.addEventListener('click', function() {
+       todoList.toggleAll();
+           })
+
     </script>
   </body>
 </html>
